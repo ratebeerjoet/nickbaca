@@ -1,0 +1,121 @@
+/* Basic Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style: none;
+}
+
+body {
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+}
+
+/* Carousel Styles */
+.carousel {
+    position: relative; /* Needed for absolute positioning of buttons/nav */
+    width: 80%;       /* Adjust width as needed */
+    max-width: 800px; /* Optional: set a max width */
+    margin: 2rem auto;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.carousel__track-container {
+    overflow: hidden; /* Crucial: Hides the slides that are off-screen */
+    position: relative; /* Optional: if needed for other elements */
+    background-color: #333; /* Background while images load */
+}
+
+.carousel__track {
+    display: flex;
+    transition: transform 0.5s ease-in-out; /* Animation for sliding */
+    height: auto; /* Adjust based on image aspect ratio or set fixed height */
+}
+
+.carousel__slide {
+    min-width: 100%; /* Each slide takes the full width of the container */
+    position: relative; /* For potential captions later */
+    flex-shrink: 0; /* Prevent slides from shrinking */
+}
+
+.carousel__image {
+    display: block; /* Removes extra space below image */
+    width: 100%;
+    height: auto;   /* Maintain aspect ratio */
+    /* Optional: If you want fixed height images */
+    /* height: 400px; */
+    /* object-fit: cover; */ /* Crop image to fit fixed height */
+}
+
+/* Buttons */
+.carousel__button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 10;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+.carousel__button:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.carousel__button--left {
+    left: 10px;
+}
+
+.carousel__button--right {
+    right: 10px;
+}
+
+/* Navigation Dots */
+.carousel__nav {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+    position: absolute; /* Position relative to .carousel */
+    bottom: 10px;       /* Place at the bottom */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+.carousel__indicator {
+    border: none;
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.5); /* Inactive dot color */
+    margin: 0 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.carousel__indicator:hover {
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.carousel__indicator.current-slide {
+    background: rgba(255, 255, 255, 1); /* Active dot color */
+}
+
+/* Hide buttons/nav if only one slide */
+.carousel[data-slide-count="1"] .carousel__button,
+.carousel[data-slide-count="1"] .carousel__nav {
+    display: none;
+}
